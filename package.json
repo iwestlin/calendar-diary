@@ -16,7 +16,7 @@
     "start": "react-app-rewired start",
     "build": "node md2Json.js && react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
-    "md": "node md2Json.js"
+    "md": "node buildMD.js"
   },
   "devDependencies": {
     "babel-plugin-import": "^1.6.3",

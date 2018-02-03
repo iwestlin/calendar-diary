@@ -1,10 +1,18 @@
 import axios from 'axios'
-import { Calendar, Badge } from 'antd'
+import { Calendar, Badge, notification } from 'antd'
 import React, { Component } from 'react'
 import DiaryModal from './DiaryModal'
 import './App.css'
 
 const LINK = 'json/'
+const openNotification = (msg) => {
+  const args = {
+    message: msg,
+    description: '',
+    duration: 3,
+  }
+  notification.open(args)
+}
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +37,7 @@ class App extends Component {
         checkedMonth: [m]
       })
     }).catch(err => {
-      console.log(err)
+      openNotification('这个月没有日记')
     })
   }
 

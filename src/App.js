@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       modalVisible: false,
       data: {},
-      currentDiary: ''
+      currentDiary: '',
+      checkedMonth: []
     }
   }
 

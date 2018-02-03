@@ -4,7 +4,11 @@ import React, { Component } from 'react'
 import DiaryModal from './DiaryModal'
 import './App.css'
 
-const LINK = 'json/'
+notification.config({
+  placement: 'topLeft'
+})
+
+const DIR = 'json/'
 const openNotification = (msg) => {
   const args = {
     message: msg,
@@ -28,7 +32,7 @@ class App extends Component {
   componentDidMount = () => {
     const d = new Date()
     const m = d.getFullYear() + '/' + (d.getMonth() + 1)
-    axios.get(LINK + m + '.json')
+    axios.get(DIR + m + '.json')
     .then(res => {
       this.setState({
         data: {
@@ -87,7 +91,7 @@ class App extends Component {
     var m = time.year() + '/' + (time.month() + 1)
     var ctx = this
     if (ctx.state.checkedMonth.indexOf(m) < 0) {
-      axios.get(LINK + m + '.json').then(res => {
+      axios.get(DIR + m + '.json').then(res => {
         ctx.setState({
           data: {
             ...ctx.state.data,
@@ -95,7 +99,7 @@ class App extends Component {
           }
         })
       }).catch(err => {
-        console.log('error: ', err)
+        openNotification('这个月没有日记')
       })
       ctx.setState({
         checkedMonth: ctx.state.checkedMonth.concat(m)
